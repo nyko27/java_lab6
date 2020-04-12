@@ -6,8 +6,15 @@ import java.util.regex.Pattern;
 
 public class TextEditor {
 
-    public static void deleteSentences(final int countOfWords, final String textToEdit) {
-        String regex = "[A-Z]{1}(\\w*(\\-|\\;|\\,|\\:)?\\s){1," + countOfWords + "}\\!";
+    public static String deleteSentences(final int countOfWords, final String textToEdit) {
+        String regex = "\\s?[A-Z]{1}(\\w+(\\-|\\;|\\,|\\:)?\\s+){1," + countOfWords + "}\\!\\s?";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(textToEdit);
+        return (matcher.replaceAll(""));
+    }
+
+    public static void printEditedText(final int countOfWords, final String textToEdit) {
+        String regex = "\\s?[A-Z]{1}(\\w+(\\-|\\;|\\,|\\:)?\\s+){1," + countOfWords + "}\\!\\s";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(textToEdit);
         System.out.println(matcher.replaceAll(""));
